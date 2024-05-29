@@ -1,4 +1,5 @@
 <?php
+
 require_once('database.php');
 
 class User {
@@ -10,8 +11,8 @@ class User {
         $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
     }
-    // function to check if user exists or not
-    public function isUser_exists($username) {
+    // function to det user by username
+    public function get_username($username) {
         $db = db_connect();
         $statement = $db->prepare("SELECT * FROM users WHERE username = :username");
         $statement->bindParam(':username', $username);
