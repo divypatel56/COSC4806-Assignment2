@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         session_start();
         $_SESSION['username'] = $username;
         $_SESSION['authenticated'] = 1;
+        unset($_SESSION['failed_attempts']);
 
         // Redirect to the login page
         header("Location: ./login.php");

@@ -36,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //if it is a failed attempt, then show the error message with the number of failed attempts.
     if(isset($_SESSION["failed_attempts"])){
 
-      echo "<p style='color:red'>This is unsuccessful attempt 
-      number: " .$_SESSION["failed_attempts"];
+      echo "<p style='color:red'> Wrong username or password. 
+      <br>You have ".$_SESSION["failed_attempts"]." failed attempts. </p>";
     }
 ?>
 
