@@ -45,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['username'] = $username;
         $_SESSION['authenticated'] = 1;
 
-        // Redirect to the index page
-        header("Location: ./index.php");
+        // Redirect to the login page
+        header("Location: ./login.php");
         exit();
     }	
 
