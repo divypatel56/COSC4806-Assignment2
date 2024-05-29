@@ -48,10 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Redirect to the login page
         header("Location: ./login.php");
         exit();
-    }	
-
-  
-
+    }	 
 } 
     if (!empty($validation_error)) {
         echo '<ul style="color: red;">';
@@ -59,9 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo '<li >' . $error . '</li>';
         }
         echo '</ul>';
-    }
-
-    
+    }    
  
 ?>
 <!DOCTYPE html>
