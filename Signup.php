@@ -1,3 +1,36 @@
+<?php
+require_once('database.php');
+require_once('user.php');
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Retrieve form data using $_REQUEST
+    $username = $_REQUEST['username'];
+    $password = $_REQUEST['password'];
+    $confirm_password = $_REQUEST['confirm_password'];
+    // Global array to store error messages. 
+    // got the idea from https://www.w3schools.com/php/php_arrays.asp
+    $validation_error = [];
+
+    // Check if passwords match
+    if ($password !== $confirm_password) {
+        $validation_error[] = "Passwords do not match.";
+    }
+
+   
+
+    // Create a new User instance
+    $user = new User();
+    // Check if the username already exists
+    if ($user->get_username($username)) {
+        $validation_error[]  = "Username already exists.";
+    }
+
+   
+
+} 
+    
+ 
+?>
 <!DOCTYPE html>
 <html>
 <head>
