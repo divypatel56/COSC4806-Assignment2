@@ -50,9 +50,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }	
 
-   
+  
 
 } 
+    if (!empty($validation_error)) {
+        echo '<ul style="color: red;">';
+        foreach ($validation_error as $error) {
+            echo '<li >' . $error . '</li>';
+        }
+        echo '</ul>';
+    }
+
     
  
 ?>
