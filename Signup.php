@@ -16,6 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $validation_error[] = "Passwords do not match.";
     }
 
+    // password strength checks
+    // reference 
+    // https://www.w3schools.com/php/func_regex_preg_match.asp
+    if (strlen($password) < 8 || 
+        !preg_match('/[A-Z]/', $password) || 
+        !preg_match('/[a-z]/', $password) || 
+        !preg_match('/[0-9]/', $password) || 
+        !preg_match('/[\W_]/', $password)) {
+        $validation_error[] = "Password must be at least 8 characters long, contain both uppercase and lowercase letters, at least one number, and at least one special character.";
+    }
    
 
     // Create a new User instance
