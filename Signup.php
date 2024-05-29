@@ -26,14 +26,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         !preg_match('/[\W_]/', $password)) {
         $validation_error[] = "Password must be at least 8 characters long, contain both uppercase and lowercase letters, at least one number, and at least one special character.";
     }
-   
-
     // Create a new User instance
     $user = new User();
     // Check if the username already exists
     if ($user->get_username($username)) {
         $validation_error[]  = "Username already exists.";
     }
+
+    // If there are no errors, proceed with user creation
+    if (empty($validation_error)) {
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        // Create the user in the database
+        $user->register_user($username, $hashed_password);
+
+        // Start a new session and set session variables
+        session_start();
+        $_SESSION['username'] = $username;
+        $_SESSION['authenticated'] = 1;
+
+        // Redirect to the index page
+        header("Location: ./index.php");
+        exit();
+    }	
 
    
 
