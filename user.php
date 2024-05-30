@@ -14,8 +14,9 @@ class User {
     // function to det user by username
     public function get_username($username) {
         $db = db_connect();
+        //To prevent SQL injection
         $statement = $db->prepare("SELECT * FROM users WHERE username = :username");
-        $statement->bindParam(':username', $username);
+          $statement->bindParam(':username', $username, PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
@@ -23,8 +24,8 @@ class User {
     public function register_user($username, $password) {
         $db = db_connect();
         $statement = $db->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
-        $statement->bindParam(':username', $username);
-        $statement->bindParam(':password', $password);
+        $statement->bindParam(':username', $username,PDO::PARAM_STR);
+        $statement->bindParam(':password', $password,PDO::PARAM_STR);
         $statement->execute();
     }
 }

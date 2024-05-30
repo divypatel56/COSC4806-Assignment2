@@ -16,7 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get user data by username
     $user_data = $user->get_username($username);
 
-    // Verify the password
+    // Verify the password used php password_varify function()
+    // to compare hash password with the password entered by user.
+    //https://www.tutorialspoint.com/php/php_function_password_verify.htm
+  
     if ($user_data && password_verify($password, $user_data['password'])) {
         // If the password is correct, set authenticated session variable and redirect to index
         $_SESSION['authenticated'] = 1;

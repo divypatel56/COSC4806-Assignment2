@@ -10,7 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Global array to store error messages. 
     // got the idea from https://www.w3schools.com/php/php_arrays.asp
     $validation_error = [];
-
+    
+    // Check if username is empty
+    if (empty($username)) {
+        $validation_error[] = "Username cannot be empty.";
+    }
     // Check if passwords match
     if ($password !== $confirm_password) {
         $validation_error[] = "Passwords do not match.";
@@ -35,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // If there are no errors, proceed with user creation
     if (empty($validation_error)) {
-        // Hash the password
+        // Hash the password using php password_hash function()
+        // https://www.php.net/manual/en/function.password-hash.
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         // Create the user in the database
         $user->register_user($username, $hashed_password);
