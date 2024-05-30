@@ -40,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // If there are no errors, proceed with user creation
     if (empty($validation_error)) {
         // Hash the password using php password_hash function()
-        // https://www.php.net/manual/en/function.password-hash.
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         // Create the user in the database
         $user->register_user($username, $hashed_password);
